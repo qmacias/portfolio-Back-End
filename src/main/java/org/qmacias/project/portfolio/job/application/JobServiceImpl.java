@@ -1,7 +1,7 @@
 package org.qmacias.project.portfolio.job.application;
 
 import org.qmacias.project.portfolio.job.domain.Job;
-import org.qmacias.project.backoffice.skill.domain.SkillItem;
+import org.qmacias.project.backoffice.skill.domain.Skill;
 import org.qmacias.project.portfolio.job.domain.JobRepository;
 
 import org.springframework.stereotype.Service;
@@ -42,15 +42,15 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
-    public Job addSkillItem(final Long id, final SkillItem skillItem) {
+    public Job addSkillItem(final Long id, final Skill skill) {
         final Job project = this.get(id);
-        return repository.save(project.addSkillItem(skillItem));
+        return this.add(project.addSkillItem(skill));
     }
 
     @Override
-    public Job removeSkillItem(final Long id, final SkillItem skillItem) {
+    public Job removeSkillItem(final Long id, final Skill skill) {
         final Job project = this.get(id);
-        return repository.save(project.removeSkillItem(skillItem));
+        return this.add(project.removeSkillItem(skill));
     }
 
 }

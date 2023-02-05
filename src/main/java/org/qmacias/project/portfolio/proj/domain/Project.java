@@ -1,7 +1,7 @@
 package org.qmacias.project.portfolio.proj.domain;
 
 import org.qmacias.project.portfolio.img.domain.Image;
-import org.qmacias.project.backoffice.skill.domain.SkillItem;
+import org.qmacias.project.backoffice.skill.domain.Skill;
 
 import javax.persistence.*;
 
@@ -40,20 +40,20 @@ public class Project implements java.io.Serializable {
             joinColumns= @JoinColumn(name ="PROJECT_ID"),
             inverseJoinColumns=@JoinColumn(name="SKILL_ID")
     )
-    private List<SkillItem> skillItems = Lists.newLinkedList();
+    private List<Skill> skills = Lists.newLinkedList();
 
     protected Project() {
     }
 
-    public Project addSkillItem(final SkillItem skillItem) {
-        checkNotNull(skillItem);
-        skillItems.add(skillItem);
+    public Project addSkillItem(final Skill skill) {
+        checkNotNull(skill);
+        skills.add(skill);
         return this;
     }
 
-    public Project removeSkillItem(final SkillItem skillItem) {
-        checkNotNull(skillItem);
-        skillItems.remove(skillItem);
+    public Project removeSkillItem(final Skill skill) {
+        checkNotNull(skill);
+        skills.remove(skill);
         return this;
     }
 
@@ -100,12 +100,12 @@ public class Project implements java.io.Serializable {
         this.image = image;
     }
 
-    public List<SkillItem> getSkillItems() {
-        return skillItems;
+    public List<Skill> getSkills() {
+        return skills;
     }
 
-    public void setSkillItems(List<SkillItem> skillItems) {
-        this.skillItems = skillItems;
+    public void setSkills(List<Skill> skills) {
+        this.skills = skills;
     }
 
     @Override
@@ -117,18 +117,18 @@ public class Project implements java.io.Serializable {
             return false;
         }
         Project project = (Project) o;
-        return Objects.equal(id, project.id) && Objects.equal(name, project.name) && Objects.equal(release, project.release) && Objects.equal(description, project.description) && Objects.equal(image, project.image) && Objects.equal(skillItems, project.skillItems);
+        return Objects.equal(id, project.id) && Objects.equal(name, project.name) && Objects.equal(release, project.release) && Objects.equal(description, project.description) && Objects.equal(image, project.image) && Objects.equal(skills, project.skills);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id, name, release, description, image, skillItems);
+        return Objects.hashCode(id, name, release, description, image, skills);
     }
 
     @Override
     public String toString() {
         return new StringJoiner(", ", Project.class.getSimpleName() + "[", "]")
-                .add("id=" + id).add("name='" + name + "'").add("release=" + release).add("description='" + description + "'").add("image=" + image).add("skillItems=" + skillItems).toString();
+                .add("id=" + id).add("name='" + name + "'").add("release=" + release).add("description='" + description + "'").add("image=" + image).add("skills=" + skills).toString();
     }
 
 }

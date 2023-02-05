@@ -10,7 +10,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 @Entity
 @Table(name = "EMPLOYMENT")
-public class EmploymentItem {
+public class Employment {
 
     static final long serialVersionUID = -828339575008398595L;
 
@@ -21,7 +21,7 @@ public class EmploymentItem {
     @Column(unique = true)
     private String name;
 
-    protected EmploymentItem() {
+    protected Employment() {
     }
 
     public Long getId() {
@@ -49,7 +49,7 @@ public class EmploymentItem {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        EmploymentItem that = (EmploymentItem) o;
+        Employment that = (Employment) o;
         return Objects.equal(id, that.id) && Objects.equal(name, that.name);
     }
 
@@ -60,7 +60,7 @@ public class EmploymentItem {
 
     @Override
     public String toString() {
-        return new StringJoiner(", ", EmploymentItem.class.getSimpleName() + "[", "]")
+        return new StringJoiner(", ", Employment.class.getSimpleName() + "[", "]")
                 .add("id=" + id).add("name='" + name + "'").toString();
     }
 

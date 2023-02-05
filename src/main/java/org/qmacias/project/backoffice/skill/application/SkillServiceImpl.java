@@ -1,7 +1,7 @@
 package org.qmacias.project.backoffice.skill.application;
 
-import org.qmacias.project.backoffice.skill.domain.SkillItem;
-import org.qmacias.project.backoffice.skill.domain.SkillItemRepository;
+import org.qmacias.project.backoffice.skill.domain.Skill;
+import org.qmacias.project.backoffice.skill.domain.SkillRepository;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -12,27 +12,27 @@ import java.util.List;
 
 @Service
 @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.SERIALIZABLE)
-public class SkillItemServiceImpl implements SkillItemService {
+public class SkillServiceImpl implements SkillService {
 
-    private final SkillItemRepository repository;
+    private final SkillRepository repository;
 
-    public SkillItemServiceImpl(final SkillItemRepository repository) {
+    public SkillServiceImpl(final SkillRepository repository) {
         this.repository = repository;
     }
 
     @Override
-    public List<SkillItem> all() {
+    public List<Skill> all() {
         return repository.findAll();
     }
 
     @Override
-    public SkillItem get(final Long id) {
+    public Skill get(final Long id) {
         return repository.findById(id).orElse(null);
     }
 
     @Override
-    public SkillItem add(final SkillItem skillItem) {
-        return repository.save(skillItem);
+    public Skill add(final Skill skill) {
+        return repository.save(skill);
     }
 
     @Override

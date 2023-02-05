@@ -10,7 +10,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 @Entity
 @Table(name = "SKILL")
-public class SkillItem implements java.io.Serializable {
+public class Skill implements java.io.Serializable {
 
     static final long serialVersionUID = -828339575008398595L;
 
@@ -21,7 +21,7 @@ public class SkillItem implements java.io.Serializable {
     @Column(unique = true)
     private String name;
 
-    protected SkillItem() {
+    protected Skill() {
     }
 
     public Long getId() {
@@ -49,8 +49,8 @@ public class SkillItem implements java.io.Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        SkillItem skillItem = (SkillItem) o;
-        return Objects.equal(id, skillItem.id) && Objects.equal(name, skillItem.name);
+        Skill skill = (Skill) o;
+        return Objects.equal(id, skill.id) && Objects.equal(name, skill.name);
     }
 
     @Override
@@ -60,7 +60,7 @@ public class SkillItem implements java.io.Serializable {
 
     @Override
     public String toString() {
-        return new StringJoiner(", ", SkillItem.class.getSimpleName() + "[", "]")
+        return new StringJoiner(", ", Skill.class.getSimpleName() + "[", "]")
                 .add("id=" + id).add("name='" + name + "'").toString();
     }
 

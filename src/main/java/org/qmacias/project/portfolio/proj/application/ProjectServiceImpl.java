@@ -2,7 +2,7 @@ package org.qmacias.project.portfolio.proj.application;
 
 import org.qmacias.project.portfolio.img.domain.Image;
 import org.qmacias.project.portfolio.proj.domain.Project;
-import org.qmacias.project.backoffice.skill.domain.SkillItem;
+import org.qmacias.project.backoffice.skill.domain.Skill;
 import org.qmacias.project.portfolio.proj.domain.ProjectRepository;
 
 import org.springframework.stereotype.Service;
@@ -43,21 +43,21 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public Project addSkillItem(final Long id, final SkillItem skillItem) {
+    public Project addSkillItem(final Long id, final Skill skill) {
         final Project project = this.get(id);
-        return repository.save(project.addSkillItem(skillItem));
+        return this.add(project.addSkillItem(skill));
     }
 
     @Override
-    public Project removeSkillItem(final Long id, final SkillItem skillItem) {
+    public Project removeSkillItem(final Long id, final Skill skill) {
         final Project project = this.get(id);
-        return repository.save(project.removeSkillItem(skillItem));
+        return this.add(project.removeSkillItem(skill));
     }
 
     public Project assignImage(final Long id, final Image image) {
         final Project project = this.get(id);
         project.setImage(image);
-        return repository.save(project);
+        return this.add(project);
     }
 
 }

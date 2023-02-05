@@ -1,7 +1,7 @@
 package org.qmacias.project.backoffice.emp.application;
 
-import org.qmacias.project.backoffice.emp.domain.EmploymentItem;
-import org.qmacias.project.backoffice.emp.domain.EmploymentItemRepository;
+import org.qmacias.project.backoffice.emp.domain.Employment;
+import org.qmacias.project.backoffice.emp.domain.EmploymentRepository;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -12,27 +12,27 @@ import java.util.List;
 
 @Service
 @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.SERIALIZABLE)
-public class EmploymentItemServiceImpl implements EmploymentItemService {
+public class EmploymentServiceImpl implements EmploymentService {
 
-    private final EmploymentItemRepository repository;
+    private final EmploymentRepository repository;
 
-    public EmploymentItemServiceImpl(final EmploymentItemRepository repository) {
+    public EmploymentServiceImpl(final EmploymentRepository repository) {
         this.repository = repository;
     }
 
     @Override
-    public List<EmploymentItem> all() {
+    public List<Employment> all() {
         return repository.findAll();
     }
 
     @Override
-    public EmploymentItem get(final Long id) {
+    public Employment get(final Long id) {
         return repository.findById(id).orElse(null);
     }
 
     @Override
-    public EmploymentItem add(final EmploymentItem employmentItem) {
-        return repository.save(employmentItem);
+    public Employment add(final Employment employment) {
+        return repository.save(employment);
     }
 
     @Override

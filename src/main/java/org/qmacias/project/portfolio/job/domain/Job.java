@@ -1,6 +1,6 @@
 package org.qmacias.project.portfolio.job.domain;
 
-import org.qmacias.project.backoffice.skill.domain.SkillItem;
+import org.qmacias.project.backoffice.skill.domain.Skill;
 
 import javax.persistence.*;
 
@@ -37,17 +37,17 @@ public class Job implements java.io.Serializable {
             joinColumns= @JoinColumn(name ="JOB_ID"),
             inverseJoinColumns=@JoinColumn(name="SKILL_ID")
     )
-    private List<SkillItem> skillItems = Lists.newLinkedList();
+    private List<Skill> skills = Lists.newLinkedList();
 
-    public Job addSkillItem(final SkillItem skillItem) {
-        checkNotNull(skillItem);
-        skillItems.add(skillItem);
+    public Job addSkillItem(final Skill skill) {
+        checkNotNull(skill);
+        skills.add(skill);
         return this;
     }
 
-    public Job removeSkillItem(final SkillItem skillItem) {
-        checkNotNull(skillItem);
-        skillItems.remove(skillItem);
+    public Job removeSkillItem(final Skill skill) {
+        checkNotNull(skill);
+        skills.remove(skill);
         return this;
     }
 
@@ -94,12 +94,12 @@ public class Job implements java.io.Serializable {
         this.description = description;
     }
 
-    public List<SkillItem> getSkillItems() {
-        return skillItems;
+    public List<Skill> getSkills() {
+        return skills;
     }
 
-    public void setSkillItems(List<SkillItem> skillItems) {
-        this.skillItems = skillItems;
+    public void setSkills(List<Skill> skills) {
+        this.skills = skills;
     }
 
     @Override
@@ -111,18 +111,18 @@ public class Job implements java.io.Serializable {
             return false;
         }
         Job job = (Job) o;
-        return Objects.equal(id, job.id) && Objects.equal(start, job.start) && Objects.equal(finish, job.finish) && Objects.equal(description, job.description) && Objects.equal(skillItems, job.skillItems);
+        return Objects.equal(id, job.id) && Objects.equal(start, job.start) && Objects.equal(finish, job.finish) && Objects.equal(description, job.description) && Objects.equal(skills, job.skills);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id, start, finish, description, skillItems);
+        return Objects.hashCode(id, start, finish, description, skills);
     }
 
     @Override
     public String toString() {
         return new StringJoiner(", ", Job.class.getSimpleName() + "[", "]")
-                .add("id=" + id).add("start=" + start).add("finish=" + finish).add("description='" + description + "'").add("skillItems=" + skillItems).toString();
+                .add("id=" + id).add("start=" + start).add("finish=" + finish).add("description='" + description + "'").add("skills=" + skills).toString();
     }
 
 }

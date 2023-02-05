@@ -1,9 +1,9 @@
 package org.qmacias.project.portfolio.job.api;
 
 import org.qmacias.project.portfolio.job.domain.Job;
-import org.qmacias.project.backoffice.skill.domain.SkillItem;
+import org.qmacias.project.backoffice.skill.domain.Skill;
 import org.qmacias.project.portfolio.job.application.JobService;
-import org.qmacias.project.backoffice.skill.application.SkillItemService;
+import org.qmacias.project.backoffice.skill.application.SkillService;
 
 import org.springframework.web.bind.annotation.*;
 
@@ -15,11 +15,11 @@ final class JobController {
 
     private final JobService service;
 
-    private final SkillItemService skillItemService;
+    private final SkillService skillService;
 
-    JobController(final JobService service, final SkillItemService skillItemService) {
+    JobController(final JobService service, final SkillService skillService) {
         this.service = service;
-        this.skillItemService = skillItemService;
+        this.skillService = skillService;
     }
 
     @GetMapping
@@ -42,16 +42,16 @@ final class JobController {
         service.remove(id);
     }
 
-    @PutMapping("/{id}/skill/{skillItemId}")
-    public Job addSkillItem(@PathVariable final Long id, @PathVariable final Long skillItemId) {
-        final SkillItem skillItem = skillItemService.get(skillItemId);
-        return service.addSkillItem(id, skillItem);
+    @PutMapping("/{id}/skill/{skillId}")
+    public Job addSkillItem(@PathVariable final Long id, @PathVariable final Long skillId) {
+        final Skill skill = skillService.get(skillId);
+        return service.addSkillItem(id, skill);
     }
 
-    @PutMapping("/{id}/remove_skill/{skillItemId}")
-    public Job removeSkillItem(@PathVariable final Long id, @PathVariable final Long skillItemId) {
-        final SkillItem skillItem = skillItemService.get(skillItemId);
-        return service.removeSkillItem(id, skillItem);
+    @PutMapping("/{id}/remove_skill/{skillId}")
+    public Job removeSkillItem(@PathVariable final Long id, @PathVariable final Long skillId) {
+        final Skill skill = skillService.get(skillId);
+        return service.removeSkillItem(id, skill);
     }
 
 }
