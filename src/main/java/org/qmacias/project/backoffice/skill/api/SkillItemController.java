@@ -1,7 +1,7 @@
-package org.qmacias.project.portfolio.skill.api;
+package org.qmacias.project.backoffice.skill.api;
 
-import org.qmacias.project.portfolio.skill.domain.SkillItem;
-import org.qmacias.project.portfolio.skill.application.SkillItemService;
+import org.qmacias.project.backoffice.skill.application.SkillItemService;
+import org.qmacias.project.backoffice.skill.domain.SkillItem;
 
 import org.springframework.web.bind.annotation.*;
 

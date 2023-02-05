@@ -1,7 +1,7 @@
 package org.qmacias.project.portfolio.proj.domain;
 
 import org.qmacias.project.portfolio.img.domain.Image;
-import org.qmacias.project.portfolio.skill.domain.SkillItem;
+import org.qmacias.project.backoffice.skill.domain.SkillItem;
 
 import javax.persistence.*;
 

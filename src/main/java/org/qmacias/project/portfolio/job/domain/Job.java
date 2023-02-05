@@ -1,6 +1,6 @@
 package org.qmacias.project.portfolio.job.domain;
 
-import org.qmacias.project.portfolio.skill.domain.SkillItem;
+import org.qmacias.project.backoffice.skill.domain.SkillItem;
 
 import javax.persistence.*;
 

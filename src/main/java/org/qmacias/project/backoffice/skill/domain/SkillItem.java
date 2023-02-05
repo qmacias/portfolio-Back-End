@@ -1,4 +1,4 @@
-package org.qmacias.project.portfolio.skill.domain;
+package org.qmacias.project.backoffice.skill.domain;
 
 import javax.persistence.*;
 

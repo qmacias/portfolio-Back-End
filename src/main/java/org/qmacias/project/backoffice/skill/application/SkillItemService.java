@@ -1,6 +1,6 @@
-package org.qmacias.project.portfolio.skill.application;
+package org.qmacias.project.backoffice.skill.application;
 
-import org.qmacias.project.portfolio.skill.domain.SkillItem;
+import org.qmacias.project.backoffice.skill.domain.SkillItem;
 import org.qmacias.project.shared.application.GenericService;
 
 public interface SkillItemService extends GenericService<SkillItem> {

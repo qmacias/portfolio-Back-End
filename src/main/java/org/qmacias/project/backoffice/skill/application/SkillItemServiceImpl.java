@@ -1,7 +1,7 @@
-package org.qmacias.project.portfolio.skill.application;
+package org.qmacias.project.backoffice.skill.application;
 
-import org.qmacias.project.portfolio.skill.domain.SkillItem;
-import org.qmacias.project.portfolio.skill.domain.SkillItemRepository;
+import org.qmacias.project.backoffice.skill.domain.SkillItem;
+import org.qmacias.project.backoffice.skill.domain.SkillItemRepository;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
