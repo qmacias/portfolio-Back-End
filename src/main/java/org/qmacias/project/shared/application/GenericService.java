@@ -2,7 +2,7 @@ package org.qmacias.project.shared.application;
 
 import java.util.List;
 
-public interface Service<T> {
+public interface GenericService<T> {
 
     List<T> all();
 

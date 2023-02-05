@@ -1,8 +1,8 @@
 package org.qmacias.project.portfolio.img.domain;
 
-import com.google.common.base.Objects;
-
 import javax.persistence.*;
+
+import com.google.common.base.Objects;
 
 import java.util.StringJoiner;
 

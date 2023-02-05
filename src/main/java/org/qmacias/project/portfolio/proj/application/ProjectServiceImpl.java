@@ -59,4 +59,5 @@ public class ProjectServiceImpl implements ProjectService {
         project.setImage(image);
         return repository.save(project);
     }
+
 }
