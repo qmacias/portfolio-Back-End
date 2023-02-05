@@ -24,6 +24,10 @@ public class Employment {
     protected Employment() {
     }
 
+    public Employment(final String name) {
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
     }

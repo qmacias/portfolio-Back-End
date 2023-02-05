@@ -24,6 +24,10 @@ public class Skill implements java.io.Serializable {
     protected Skill() {
     }
 
+    public Skill(final String name) {
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
     }
