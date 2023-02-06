@@ -4,14 +4,10 @@ import org.qmacias.project.backoffice.skill.domain.Skill;
 import org.qmacias.project.backoffice.skill.domain.SkillRepository;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Isolation;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
-@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.SERIALIZABLE)
 public class SkillServiceImpl implements SkillService {
 
     private final SkillRepository repository;

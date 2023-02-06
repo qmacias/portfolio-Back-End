@@ -1,21 +1,15 @@
 package org.qmacias.project.portfolio.job.application;
 
-import org.qmacias.project.backoffice.emp.domain.Employment;
-import org.qmacias.project.portfolio.img.domain.Image;
 import org.qmacias.project.portfolio.job.domain.Job;
 import org.qmacias.project.backoffice.skill.domain.Skill;
+import org.qmacias.project.backoffice.emp.domain.Employment;
 import org.qmacias.project.portfolio.job.domain.JobRepository;
 
-import org.qmacias.project.portfolio.proj.domain.Project;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Isolation;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
-@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.SERIALIZABLE)
 public class JobServiceImpl implements JobService {
 
     private final JobRepository repository;

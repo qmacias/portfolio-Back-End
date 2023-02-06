@@ -4,14 +4,10 @@ import org.qmacias.project.portfolio.soc.domain.Social;
 import org.qmacias.project.portfolio.soc.domain.SocialRepository;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Isolation;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
-@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.SERIALIZABLE)
 public class SocialServiceImpl implements SocialService {
 
     private final SocialRepository repository;

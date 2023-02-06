@@ -6,14 +6,10 @@ import org.qmacias.project.backoffice.skill.domain.Skill;
 import org.qmacias.project.portfolio.proj.domain.ProjectRepository;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Isolation;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
-@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.SERIALIZABLE)
 public class ProjectServiceImpl implements ProjectService {
 
     private final ProjectRepository repository;

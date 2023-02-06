@@ -2,15 +2,12 @@ package org.qmacias.project.portfolio.phn.application;
 
 import org.qmacias.project.portfolio.phn.domain.Phone;
 import org.qmacias.project.portfolio.phn.domain.PhoneRepository;
+
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Isolation;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
-@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.SERIALIZABLE)
 public class PhoneServiceImpl implements PhoneService {
 
     private final PhoneRepository repository;

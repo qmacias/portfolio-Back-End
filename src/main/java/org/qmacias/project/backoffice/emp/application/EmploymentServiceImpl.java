@@ -4,14 +4,10 @@ import org.qmacias.project.backoffice.emp.domain.Employment;
 import org.qmacias.project.backoffice.emp.domain.EmploymentRepository;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Isolation;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
-@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.SERIALIZABLE)
 public class EmploymentServiceImpl implements EmploymentService {
 
     private final EmploymentRepository repository;
