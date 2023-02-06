@@ -6,9 +6,6 @@ import org.qmacias.project.portfolio.adr.domain.Address;
 import org.qmacias.project.portfolio.prof.domain.Profile;
 import org.qmacias.project.shared.application.GenericService;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public interface ProfileService extends GenericService<Profile> {
 
     Profile addSocialItem(final Long id, final Social social);
