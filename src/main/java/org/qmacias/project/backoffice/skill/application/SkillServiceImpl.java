@@ -4,10 +4,12 @@ import org.qmacias.project.backoffice.skill.domain.Skill;
 import org.qmacias.project.backoffice.skill.domain.SkillRepository;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class SkillServiceImpl implements SkillService {
 
     private final SkillRepository repository;

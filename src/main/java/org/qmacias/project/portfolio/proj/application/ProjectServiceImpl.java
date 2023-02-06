@@ -6,10 +6,12 @@ import org.qmacias.project.backoffice.skill.domain.Skill;
 import org.qmacias.project.portfolio.proj.domain.ProjectRepository;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class ProjectServiceImpl implements ProjectService {
 
     private final ProjectRepository repository;

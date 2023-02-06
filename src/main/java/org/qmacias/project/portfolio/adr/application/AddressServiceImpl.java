@@ -4,10 +4,12 @@ import org.qmacias.project.portfolio.adr.domain.Address;
 import org.qmacias.project.portfolio.adr.domain.AddressRepository;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class AddressServiceImpl implements AddressService {
 
     private final AddressRepository repository;

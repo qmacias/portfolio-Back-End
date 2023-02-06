@@ -4,7 +4,9 @@ import org.qmacias.project.backoffice.emp.domain.Employment;
 import org.qmacias.project.portfolio.job.domain.Job;
 import org.qmacias.project.backoffice.skill.domain.Skill;
 import org.qmacias.project.shared.application.GenericService;
+import org.springframework.stereotype.Component;
 
+@Component
 public interface JobService extends GenericService<Job> {
 
     Job addSkillItem(final Long id, final Skill skill);

@@ -4,10 +4,12 @@ import org.qmacias.project.portfolio.img.domain.Image;
 import org.qmacias.project.portfolio.img.domain.ImageRepository;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class ImageServiceImpl implements ImageService {
 
     private final ImageRepository repository;

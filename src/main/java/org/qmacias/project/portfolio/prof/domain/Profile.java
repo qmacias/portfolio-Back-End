@@ -2,16 +2,15 @@ package org.qmacias.project.portfolio.prof.domain;
 
 import javax.persistence.*;
 
+import org.qmacias.project.portfolio.soc.domain.Social;
+import org.qmacias.project.portfolio.adr.domain.Address;
+
 import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
-import org.qmacias.project.backoffice.skill.domain.Skill;
-import org.qmacias.project.portfolio.adr.domain.Address;
-import org.qmacias.project.portfolio.proj.domain.Project;
-import org.qmacias.project.portfolio.soc.domain.Social;
 
 import java.sql.Date;
-import java.time.LocalDate;
 import java.util.List;
+import java.time.LocalDate;
 import java.util.StringJoiner;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -29,11 +28,11 @@ public class Profile implements java.io.Serializable {
 
     private String summary;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "PROFILE_ID", referencedColumnName = "ID")
     private List<Social> socialItems = Lists.newLinkedList();
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "PROFILE_ID", referencedColumnName = "ID")
     private List<Address> addressItems = Lists.newLinkedList();
 

@@ -4,10 +4,12 @@ import org.qmacias.project.portfolio.soc.domain.Social;
 import org.qmacias.project.portfolio.soc.domain.SocialRepository;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class SocialServiceImpl implements SocialService {
 
     private final SocialRepository repository;

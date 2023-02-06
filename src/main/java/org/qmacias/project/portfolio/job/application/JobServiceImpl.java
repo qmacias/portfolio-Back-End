@@ -6,10 +6,12 @@ import org.qmacias.project.backoffice.emp.domain.Employment;
 import org.qmacias.project.portfolio.job.domain.JobRepository;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class JobServiceImpl implements JobService {
 
     private final JobRepository repository;
