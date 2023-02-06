@@ -1,5 +1,7 @@
 package org.qmacias.project.portfolio.proj.api;
 
+import lombok.RequiredArgsConstructor;
+
 import org.qmacias.project.portfolio.img.domain.Image;
 import org.qmacias.project.portfolio.proj.domain.Project;
 import org.qmacias.project.backoffice.skill.domain.Skill;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/project")
 final class ProjectController {
 
@@ -20,12 +23,6 @@ final class ProjectController {
     private final ImageService imageService;
 
     private final SkillService skillService;
-
-    ProjectController(final ProjectService service, final ImageService imageService, final SkillService skillService) {
-        this.service = service;
-        this.imageService = imageService;
-        this.skillService = skillService;
-    }
 
     @GetMapping
     public List<Project> allProjects() {
