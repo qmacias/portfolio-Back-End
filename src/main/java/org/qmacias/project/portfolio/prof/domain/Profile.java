@@ -2,6 +2,7 @@ package org.qmacias.project.portfolio.prof.domain;
 
 import javax.persistence.*;
 
+import org.qmacias.project.portfolio.phn.domain.Phone;
 import org.qmacias.project.portfolio.soc.domain.Social;
 import org.qmacias.project.portfolio.adr.domain.Address;
 
@@ -30,6 +31,10 @@ public class Profile implements java.io.Serializable {
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "PROFILE_ID", referencedColumnName = "ID")
+    private List<Phone> phoneItems = Lists.newLinkedList();
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "PROFILE_ID", referencedColumnName = "ID")
     private List<Social> socialItems = Lists.newLinkedList();
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
@@ -37,6 +42,18 @@ public class Profile implements java.io.Serializable {
     private List<Address> addressItems = Lists.newLinkedList();
 
     protected Profile() {
+    }
+
+    public Profile addPhoneItem(final Phone phone) {
+        checkNotNull(phone);
+        phoneItems.add(phone);
+        return this;
+    }
+
+    public Profile removePhoneItem(final Phone phone) {
+        checkNotNull(phone);
+        phoneItems.remove(phone);
+        return this;
     }
 
     public Profile addSocialItem(final Social social) {
@@ -89,6 +106,14 @@ public class Profile implements java.io.Serializable {
         this.summary = summary;
     }
 
+    public List<Phone> getPhoneItems() {
+        return phoneItems;
+    }
+
+    public void setPhoneItems(List<Phone> phoneItems) {
+        this.phoneItems = phoneItems;
+    }
+
     public List<Social> getSocialItems() {
         return socialItems;
     }
@@ -114,18 +139,18 @@ public class Profile implements java.io.Serializable {
             return false;
         }
         Profile profile = (Profile) o;
-        return Objects.equal(id, profile.id) && Objects.equal(birthdate, profile.birthdate) && Objects.equal(summary, profile.summary) && Objects.equal(socialItems, profile.socialItems) && Objects.equal(addressItems, profile.addressItems);
+        return Objects.equal(id, profile.id) && Objects.equal(birthdate, profile.birthdate) && Objects.equal(summary, profile.summary) && Objects.equal(socialItems, profile.socialItems) && Objects.equal(addressItems, profile.addressItems) && Objects.equal(phoneItems, profile.phoneItems);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id, birthdate, summary, socialItems, addressItems);
+        return Objects.hashCode(id, birthdate, summary, socialItems, addressItems, phoneItems);
     }
 
     @Override
     public String toString() {
         return new StringJoiner(", ", Profile.class.getSimpleName() + "[", "]")
-                .add("id=" + id).add("birthdate=" + birthdate).add("summary='" + summary + "'").add("socialItems=" + socialItems).add("addressItems=" + addressItems).toString();
+                .add("id=" + id).add("birthdate=" + birthdate).add("summary='" + summary + "'").add("socialItems=" + socialItems).add("addressItems=" + addressItems).add("phoneItems=" + phoneItems).toString();
     }
 
 }

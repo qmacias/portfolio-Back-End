@@ -4,6 +4,8 @@ import lombok.RequiredArgsConstructor;
 
 import org.qmacias.project.portfolio.adr.application.AddressService;
 import org.qmacias.project.portfolio.adr.domain.Address;
+import org.qmacias.project.portfolio.phn.application.PhoneService;
+import org.qmacias.project.portfolio.phn.domain.Phone;
 import org.qmacias.project.portfolio.soc.domain.Social;
 import org.qmacias.project.portfolio.prof.domain.Profile;
 import org.qmacias.project.portfolio.soc.application.SocialService;
@@ -19,6 +21,8 @@ import java.util.List;
 final class ProfileController {
 
     private final ProfileService service;
+
+    private final PhoneService phoneService;
 
     private final SocialService socialService;
 
@@ -42,6 +46,18 @@ final class ProfileController {
     @DeleteMapping("/{id}")
     public void removeProfile(@PathVariable final Long id) {
         service.remove(id);
+    }
+
+    @PutMapping("/{id}/phone/{phoneId}")
+    public Profile addAPhoneItem(@PathVariable final Long id, @PathVariable final Long phoneId) {
+        final Phone phone = phoneService.get(phoneId);
+        return service.addPhoneItem(id, phone);
+    }
+
+    @PutMapping("/{id}/remove_phone/{phoneId}")
+    public Profile removePhoneItem(@PathVariable final Long id, @PathVariable final Long phoneId) {
+        final Phone phone = phoneService.get(phoneId);
+        return service.removePhoneItem(id, phone);
     }
 
     @PutMapping("/{id}/social/{socialId}")

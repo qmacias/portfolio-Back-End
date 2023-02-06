@@ -1,9 +1,11 @@
 package org.qmacias.project.portfolio.prof.application;
 
+import org.qmacias.project.portfolio.phn.domain.Phone;
 import org.qmacias.project.portfolio.soc.domain.Social;
 import org.qmacias.project.portfolio.adr.domain.Address;
 import org.qmacias.project.portfolio.prof.domain.Profile;
 import org.qmacias.project.shared.application.GenericService;
+
 import org.springframework.stereotype.Component;
 
 @Component
@@ -16,5 +18,9 @@ public interface ProfileService extends GenericService<Profile> {
     Profile addAddressItem(final Long id, final Address address);
 
     Profile removeAddressItem(final Long id, final Address address);
+
+    Profile addPhoneItem(final Long id, final Phone phone);
+
+    Profile removePhoneItem(final Long id, final Phone phone);
 
 }

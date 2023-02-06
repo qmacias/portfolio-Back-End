@@ -1,5 +1,6 @@
 package org.qmacias.project.portfolio.prof.application;
 
+import org.qmacias.project.portfolio.phn.domain.Phone;
 import org.qmacias.project.portfolio.soc.domain.Social;
 import org.qmacias.project.portfolio.adr.domain.Address;
 import org.qmacias.project.portfolio.prof.domain.Profile;
@@ -38,6 +39,18 @@ public class ProfileServiceImpl implements ProfileService {
     @Override
     public void remove(final Long id) {
         repository.deleteById(id);
+    }
+
+    @Override
+    public Profile addPhoneItem(final Long id, final Phone phone) {
+        final Profile profile = this.get(id);
+        return this.add(profile.addPhoneItem(phone));
+    }
+
+    @Override
+    public Profile removePhoneItem(final Long id, final Phone phone) {
+        final Profile profile = this.get(id);
+        return this.add(profile.removePhoneItem(phone));
     }
 
     @Override
