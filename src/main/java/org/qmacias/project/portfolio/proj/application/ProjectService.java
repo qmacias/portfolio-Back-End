@@ -5,7 +5,7 @@ import org.qmacias.project.portfolio.proj.domain.Project;
 import org.qmacias.project.backoffice.skill.domain.Skill;
 import org.qmacias.project.shared.application.GenericService;
 
-public interface ProjectService extends GenericService<Project> {
+public interface ProjectService extends GenericService<Project, Long> {
 
     Project addSkillItem(final Long id, final Skill skill);
 

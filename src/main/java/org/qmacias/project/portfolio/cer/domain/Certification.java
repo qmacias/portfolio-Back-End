@@ -1,0 +1,113 @@
+package org.qmacias.project.portfolio.cer.domain;
+
+import javax.persistence.*;
+
+import com.google.common.base.Objects;
+import org.qmacias.project.portfolio.img.domain.Image;
+
+import java.sql.Date;
+import java.time.LocalDate;
+import java.util.StringJoiner;
+
+import static com.google.common.base.Preconditions.checkNotNull;
+
+@Entity
+public class Certification implements java.io.Serializable {
+
+    static final long serialVersionUID = -7018170656001321402L;
+
+    @Id
+    private String id;
+
+    private String pathName;
+
+    private String pathUrl;
+
+    private String emitter;
+
+    private Date emission;
+
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "IMAGE_ID", referencedColumnName = "ID")
+    private Image image;
+
+    protected Certification() {
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        checkNotNull(id);
+        this.id = id;
+    }
+
+    public String getPathName() {
+        return pathName;
+    }
+
+    public void setPathName(String pathName) {
+        checkNotNull(pathName);
+        this.pathName = pathName;
+    }
+
+    public String getPathUrl() {
+        return pathUrl;
+    }
+
+    public void setPathUrl(String pathUrl) {
+        checkNotNull(pathUrl);
+        this.pathUrl = pathUrl;
+    }
+
+    public String getEmitter() {
+        return emitter;
+    }
+
+    public void setEmitter(String emitter) {
+        checkNotNull(emitter);
+        this.emitter = emitter;
+    }
+
+    public Date getEmission() {
+        return emission;
+    }
+
+    public void setEmission(String emissionStr) {
+        checkNotNull(emissionStr);
+        this.emission = Date.valueOf(LocalDate.parse(emissionStr));
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Certification that = (Certification) o;
+        return Objects.equal(id, that.id) && Objects.equal(pathName, that.pathName) && Objects.equal(pathUrl, that.pathUrl) && Objects.equal(emitter, that.emitter) && Objects.equal(emission, that.emission) && Objects.equal(image, that.image);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id, pathName, pathUrl, emitter, emission, image);
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", Certification.class.getSimpleName() + "[", "]")
+                .add("id='" + id + "'").add("pathName='" + pathName + "'").add("pathUrl='" + pathUrl + "'").add("emitter='" + emitter + "'").add("emission=" + emission).add("image=" + image).toString();
+    }
+
+}

@@ -5,7 +5,7 @@ import org.qmacias.project.backoffice.skill.domain.Skill;
 import org.qmacias.project.backoffice.emp.domain.Employment;
 import org.qmacias.project.shared.application.GenericService;
 
-public interface JobService extends GenericService<Job> {
+public interface JobService extends GenericService<Job, Long> {
 
     Job addSkillItem(final Long id, final Skill skill);
 

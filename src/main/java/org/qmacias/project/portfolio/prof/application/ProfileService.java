@@ -6,7 +6,7 @@ import org.qmacias.project.portfolio.adr.domain.Address;
 import org.qmacias.project.portfolio.prof.domain.Profile;
 import org.qmacias.project.shared.application.GenericService;
 
-public interface ProfileService extends GenericService<Profile> {
+public interface ProfileService extends GenericService<Profile, Long> {
 
     Profile addSocialItem(final Long id, final Social social);
 
