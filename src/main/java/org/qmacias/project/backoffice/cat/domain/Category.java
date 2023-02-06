@@ -1,4 +1,4 @@
-package org.qmacias.project.backoffice.mod.domain;
+package org.qmacias.project.backoffice.cat.domain;
 
 import javax.persistence.*;
 
@@ -9,9 +9,9 @@ import java.util.StringJoiner;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 @Entity
-public class Modality {
+public class Category implements java.io.Serializable {
 
-    static final long serialVersionUID = 4220303882976837670L;
+    static final long serialVersionUID = -3438966892664055904L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,10 +20,10 @@ public class Modality {
     @Column(unique = true)
     private String name;
 
-    protected Modality() {
+    protected Category() {
     }
 
-    public Modality(final String name) {
+    public Category(final String name) {
         this.name = name;
     }
 
@@ -52,8 +52,8 @@ public class Modality {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Modality modality = (Modality) o;
-        return Objects.equal(id, modality.id) && Objects.equal(name, modality.name);
+        Category category = (Category) o;
+        return Objects.equal(id, category.id) && Objects.equal(name, category.name);
     }
 
     @Override
@@ -63,7 +63,7 @@ public class Modality {
 
     @Override
     public String toString() {
-        return new StringJoiner(", ", Modality.class.getSimpleName() + "[", "]")
+        return new StringJoiner(", ", Category.class.getSimpleName() + "[", "]")
                 .add("id=" + id).add("name='" + name + "'").toString();
     }
 
