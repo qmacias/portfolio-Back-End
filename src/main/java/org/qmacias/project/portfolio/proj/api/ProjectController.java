@@ -64,4 +64,5 @@ final class ProjectController {
         final Image image = imageService.get(imageId);
         return service.assignImage(id, image);
     }
+
 }

@@ -1,5 +1,6 @@
 package org.qmacias.project.portfolio.job.domain;
 
+import org.qmacias.project.backoffice.emp.domain.Employment;
 import org.qmacias.project.backoffice.skill.domain.Skill;
 
 import javax.persistence.*;
@@ -38,6 +39,10 @@ public class Job implements java.io.Serializable {
             inverseJoinColumns=@JoinColumn(name="SKILL_ID")
     )
     private List<Skill> skills = Lists.newLinkedList();
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "EMPLOYMENT_ID", referencedColumnName = "ID")
+    private Employment employment;
 
     public Job addSkillItem(final Skill skill) {
         checkNotNull(skill);
@@ -102,6 +107,14 @@ public class Job implements java.io.Serializable {
         this.skills = skills;
     }
 
+    public Employment getEmployment() {
+        return employment;
+    }
+
+    public void setEmployment(Employment employment) {
+        this.employment = employment;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -111,18 +124,18 @@ public class Job implements java.io.Serializable {
             return false;
         }
         Job job = (Job) o;
-        return Objects.equal(id, job.id) && Objects.equal(start, job.start) && Objects.equal(finish, job.finish) && Objects.equal(description, job.description) && Objects.equal(skills, job.skills);
+        return Objects.equal(id, job.id) && Objects.equal(position, job.position) && Objects.equal(start, job.start) && Objects.equal(finish, job.finish) && Objects.equal(description, job.description) && Objects.equal(skills, job.skills) && Objects.equal(employment, job.employment);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id, start, finish, description, skills);
+        return Objects.hashCode(id, position, start, finish, description, skills, employment);
     }
 
     @Override
     public String toString() {
         return new StringJoiner(", ", Job.class.getSimpleName() + "[", "]")
-                .add("id=" + id).add("start=" + start).add("finish=" + finish).add("description='" + description + "'").add("skills=" + skills).toString();
+                .add("id=" + id).add("position='" + position + "'").add("start=" + start).add("finish=" + finish).add("description='" + description + "'").add("skills=" + skills).add("employment=" + employment).toString();
     }
 
 }

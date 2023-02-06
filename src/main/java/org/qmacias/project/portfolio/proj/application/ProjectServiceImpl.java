@@ -54,6 +54,7 @@ public class ProjectServiceImpl implements ProjectService {
         return this.add(project.removeSkillItem(skill));
     }
 
+    @Override
     public Project assignImage(final Long id, final Image image) {
         final Project project = this.get(id);
         project.setImage(image);
