@@ -9,7 +9,6 @@ import java.util.StringJoiner;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 @Entity
-@Table(name = "EMPLOYMENT")
 public class Employment {
 
     static final long serialVersionUID = -828339575008398595L;
