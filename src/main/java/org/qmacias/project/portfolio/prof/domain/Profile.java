@@ -5,6 +5,7 @@ import javax.persistence.*;
 import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
 import org.qmacias.project.backoffice.skill.domain.Skill;
+import org.qmacias.project.portfolio.adr.domain.Address;
 import org.qmacias.project.portfolio.proj.domain.Project;
 import org.qmacias.project.portfolio.soc.domain.Social;
 
@@ -32,6 +33,10 @@ public class Profile implements java.io.Serializable {
     @JoinColumn(name = "PROFILE_ID", referencedColumnName = "ID")
     private List<Social> socialItems = Lists.newLinkedList();
 
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "PROFILE_ID", referencedColumnName = "ID")
+    private List<Address> addressItems = Lists.newLinkedList();
+
     protected Profile() {
     }
 
@@ -44,6 +49,18 @@ public class Profile implements java.io.Serializable {
     public Profile removeSocialItem(final Social social) {
         checkNotNull(social);
         socialItems.remove(social);
+        return this;
+    }
+
+    public Profile addAddressItem(final Address address) {
+        checkNotNull(address);
+        addressItems.add(address);
+        return this;
+    }
+
+    public Profile removeAddressItem(final Address address) {
+        checkNotNull(address);
+        addressItems.remove(address);
         return this;
     }
 
@@ -81,6 +98,14 @@ public class Profile implements java.io.Serializable {
         this.socialItems = socialItems;
     }
 
+    public List<Address> getAddressItems() {
+        return addressItems;
+    }
+
+    public void setAddressItems(List<Address> addressItems) {
+        this.addressItems = addressItems;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -90,18 +115,18 @@ public class Profile implements java.io.Serializable {
             return false;
         }
         Profile profile = (Profile) o;
-        return Objects.equal(id, profile.id) && Objects.equal(birthdate, profile.birthdate) && Objects.equal(summary, profile.summary);
+        return Objects.equal(id, profile.id) && Objects.equal(birthdate, profile.birthdate) && Objects.equal(summary, profile.summary) && Objects.equal(socialItems, profile.socialItems) && Objects.equal(addressItems, profile.addressItems);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id, birthdate, summary);
+        return Objects.hashCode(id, birthdate, summary, socialItems, addressItems);
     }
 
     @Override
     public String toString() {
         return new StringJoiner(", ", Profile.class.getSimpleName() + "[", "]")
-                .add("id=" + id).add("birthdate=" + birthdate).add("summary='" + summary + "'").toString();
+                .add("id=" + id).add("birthdate=" + birthdate).add("summary='" + summary + "'").add("socialItems=" + socialItems).add("addressItems=" + addressItems).toString();
     }
 
 }

@@ -1,6 +1,7 @@
 package org.qmacias.project.portfolio.prof.application;
 
 import org.qmacias.project.portfolio.soc.domain.Social;
+import org.qmacias.project.portfolio.adr.domain.Address;
 import org.qmacias.project.portfolio.prof.domain.Profile;
 import org.qmacias.project.portfolio.prof.domain.ProfileRepository;
 
@@ -47,6 +48,18 @@ public class ProfileServiceImpl implements ProfileService {
     public Profile removeSocialItem(final Long id, final Social social) {
         final Profile profile = this.get(id);
         return this.add(profile.removeSocialItem(social));
+    }
+
+    @Override
+    public Profile addAddressItem(final Long id, final Address address) {
+        final Profile profile = this.get(id);
+        return this.add(profile.addAddressItem(address));
+    }
+
+    @Override
+    public Profile removeAddressItem(final Long id, final Address address) {
+        final Profile profile = this.get(id);
+        return this.add(profile.removeAddressItem(address));
     }
 
 }
