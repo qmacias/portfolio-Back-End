@@ -3,6 +3,7 @@ package org.qmacias.project.portfolio.cer.domain;
 import javax.persistence.*;
 
 import com.google.common.base.Objects;
+import org.qmacias.project.backoffice.cat.domain.Category;
 import org.qmacias.project.portfolio.img.domain.Image;
 
 import java.sql.Date;
@@ -27,9 +28,15 @@ public class Certification implements java.io.Serializable {
 
     private Date emission;
 
-    @OneToOne(cascade=CascadeType.ALL)
+    private Integer schedule;
+
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "IMAGE_ID", referencedColumnName = "ID")
     private Image image;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "CATEGORY_ID", referencedColumnName = "ID")
+    private Category category;
 
     protected Certification() {
     }
@@ -79,12 +86,28 @@ public class Certification implements java.io.Serializable {
         this.emission = Date.valueOf(LocalDate.parse(emissionStr));
     }
 
+    public Integer getSchedule() {
+        return schedule;
+    }
+
+    public void setSchedule(Integer schedule) {
+        this.schedule = schedule;
+    }
+
     public Image getImage() {
         return image;
     }
 
     public void setImage(Image image) {
         this.image = image;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     @Override
@@ -96,18 +119,18 @@ public class Certification implements java.io.Serializable {
             return false;
         }
         Certification that = (Certification) o;
-        return Objects.equal(id, that.id) && Objects.equal(pathName, that.pathName) && Objects.equal(pathUrl, that.pathUrl) && Objects.equal(emitter, that.emitter) && Objects.equal(emission, that.emission) && Objects.equal(image, that.image);
+        return Objects.equal(id, that.id) && Objects.equal(pathName, that.pathName) && Objects.equal(pathUrl, that.pathUrl) && Objects.equal(emitter, that.emitter) && Objects.equal(emission, that.emission) && Objects.equal(schedule, that.schedule) && Objects.equal(image, that.image);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id, pathName, pathUrl, emitter, emission, image);
+        return Objects.hashCode(id, pathName, pathUrl, emitter, emission, schedule, image);
     }
 
     @Override
     public String toString() {
         return new StringJoiner(", ", Certification.class.getSimpleName() + "[", "]")
-                .add("id='" + id + "'").add("pathName='" + pathName + "'").add("pathUrl='" + pathUrl + "'").add("emitter='" + emitter + "'").add("emission=" + emission).add("image=" + image).toString();
+                .add("id='" + id + "'").add("pathName='" + pathName + "'").add("pathUrl='" + pathUrl + "'").add("emitter='" + emitter + "'").add("emission=" + emission).add("schedule='" + schedule + "'").add("image=" + image).toString();
     }
 
 }

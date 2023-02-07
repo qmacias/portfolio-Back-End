@@ -1,5 +1,6 @@
 package org.qmacias.project.portfolio.cer.application;
 
+import org.qmacias.project.backoffice.cat.domain.Category;
 import org.qmacias.project.portfolio.cer.domain.Certification;
 import org.qmacias.project.portfolio.cer.domain.CertificationRepository;
 
@@ -44,6 +45,13 @@ public class CertificationServiceImpl implements CertificationService {
     public Certification assignImage(final String id, final Image image) {
         final Certification certification = this.get(id);
         certification.setImage(image);
+        return this.add(certification);
+    }
+
+    @Override
+    public Certification assignCategory(final String id, final Category category) {
+        final Certification certification = this.get(id);
+        certification.setCategory(category);
         return this.add(certification);
     }
 
