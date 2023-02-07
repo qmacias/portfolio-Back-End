@@ -3,7 +3,9 @@ package org.qmacias.project.portfolio.per.domain;
 import javax.persistence.*;
 
 import com.google.common.base.Objects;
+import org.qmacias.project.portfolio.job.domain.Job;
 
+import java.util.List;
 import java.util.StringJoiner;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -26,7 +28,23 @@ public class Person implements java.io.Serializable {
 
     private String email;
 
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "PERSON_ID", referencedColumnName = "ID")
+    private List<Job> jobs;
+
     protected Person() {
+    }
+
+    public Person addJobItem(final Job job) {
+        checkNotNull(job);
+        jobs.add(job);
+        return this;
+    }
+
+    public Person removeJobItem(final Job job) {
+        checkNotNull(job);
+        jobs.remove(job);
+        return this;
     }
 
     public Long getId() {
@@ -73,6 +91,14 @@ public class Person implements java.io.Serializable {
         this.email = email;
     }
 
+    public List<Job> getJobs() {
+        return jobs;
+    }
+
+    public void setJobs(List<Job> jobs) {
+        this.jobs = jobs;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -82,18 +108,18 @@ public class Person implements java.io.Serializable {
             return false;
         }
         Person person = (Person) o;
-        return Objects.equal(id, person.id) && Objects.equal(firstName, person.firstName) && Objects.equal(lastName, person.lastName) && Objects.equal(degree, person.degree) && Objects.equal(email, person.email);
+        return Objects.equal(id, person.id) && Objects.equal(firstName, person.firstName) && Objects.equal(lastName, person.lastName) && Objects.equal(degree, person.degree) && Objects.equal(email, person.email) && Objects.equal(jobs, person.jobs);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id, firstName, lastName, degree, email);
+        return Objects.hashCode(id, firstName, lastName, degree, email, jobs);
     }
 
     @Override
     public String toString() {
         return new StringJoiner(", ", Person.class.getSimpleName() + "[", "]")
-                .add("id=" + id).add("firstName='" + firstName + "'").add("lastName='" + lastName + "'").add("degree='" + degree + "'").add("email='" + email + "'").toString();
+                .add("id=" + id).add("firstName='" + firstName + "'").add("lastName='" + lastName + "'").add("degree='" + degree + "'").add("email='" + email + "'").add("jobs=" + jobs).toString();
     }
 
 }
