@@ -31,15 +31,15 @@ public class Project implements java.io.Serializable {
 
     private String description;
 
-    @OneToOne(cascade=CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "IMAGE_ID", referencedColumnName = "ID")
     private Image image;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade= {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinTable(
             name = "PROJECT_SKILLS",
-            joinColumns= @JoinColumn(name ="PROJECT_ID"),
-            inverseJoinColumns=@JoinColumn(name="SKILL_ID")
+            joinColumns = @JoinColumn(name = "PROJECT_ID"),
+            inverseJoinColumns = @JoinColumn(name = "SKILL_ID")
     )
     private List<Skill> skills = Lists.newLinkedList();
 
