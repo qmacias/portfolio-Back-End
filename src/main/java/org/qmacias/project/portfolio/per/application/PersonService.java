@@ -2,10 +2,13 @@ package org.qmacias.project.portfolio.per.application;
 
 import org.qmacias.project.portfolio.job.domain.Job;
 import org.qmacias.project.portfolio.per.domain.Person;
+import org.qmacias.project.portfolio.prof.domain.Profile;
 import org.qmacias.project.portfolio.proj.domain.Project;
 import org.qmacias.project.shared.application.GenericService;
 
 public interface PersonService extends GenericService<Person, Long> {
+
+    Person assignProfile(final Long id, final Profile profile);
 
     Person addJobItem(final Long id, final Job job);
 

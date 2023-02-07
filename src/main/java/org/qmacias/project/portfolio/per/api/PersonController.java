@@ -1,13 +1,16 @@
 package org.qmacias.project.portfolio.per.api;
 
 import lombok.RequiredArgsConstructor;
-import org.qmacias.project.portfolio.job.application.JobService;
-import org.qmacias.project.portfolio.job.domain.Job;
-import org.qmacias.project.portfolio.per.application.PersonService;
 
+import org.qmacias.project.portfolio.job.domain.Job;
 import org.qmacias.project.portfolio.per.domain.Person;
-import org.qmacias.project.portfolio.proj.application.ProjectService;
+import org.qmacias.project.portfolio.prof.domain.Profile;
 import org.qmacias.project.portfolio.proj.domain.Project;
+import org.qmacias.project.portfolio.job.application.JobService;
+import org.qmacias.project.portfolio.per.application.PersonService;
+import org.qmacias.project.portfolio.prof.application.ProfileService;
+import org.qmacias.project.portfolio.proj.application.ProjectService;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,6 +21,8 @@ import java.util.List;
 final class PersonController {
 
     private final PersonService service;
+
+    private final ProfileService profileService;
 
     private final JobService jobService;
 
@@ -41,6 +46,12 @@ final class PersonController {
     @DeleteMapping("/{id}")
     public void removePerson(@PathVariable final Long id) {
         service.remove(id);
+    }
+
+    @PutMapping("/{id}/profile_detail/{profileId}")
+    public Person assignProfileDetail(@PathVariable final Long id, @PathVariable final Long profileId) {
+        final Profile profile = profileService.get(profileId);
+        return service.assignProfile(id, profile);
     }
 
     @PutMapping("/{id}/job/{jobId}")

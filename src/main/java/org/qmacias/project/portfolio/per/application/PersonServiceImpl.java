@@ -1,10 +1,13 @@
 package org.qmacias.project.portfolio.per.application;
 
+import org.qmacias.project.backoffice.mod.domain.Modality;
 import org.qmacias.project.backoffice.skill.domain.Skill;
+import org.qmacias.project.portfolio.edu.domain.Education;
 import org.qmacias.project.portfolio.job.domain.Job;
 import org.qmacias.project.portfolio.per.domain.Person;
 
 import org.qmacias.project.portfolio.per.domain.PersonRepository;
+import org.qmacias.project.portfolio.prof.domain.Profile;
 import org.qmacias.project.portfolio.proj.domain.Project;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,6 +42,13 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public void remove(final Long id) {
         repository.deleteById(id);
+    }
+
+    @Override
+    public Person assignProfile(final Long id, final Profile profile) {
+        final Person person = this.get(id);
+        person.setProfile(profile);
+        return this.add(person);
     }
 
     @Override

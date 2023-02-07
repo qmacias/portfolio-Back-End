@@ -4,7 +4,9 @@ import javax.persistence.*;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
+
 import org.qmacias.project.portfolio.job.domain.Job;
+import org.qmacias.project.portfolio.prof.domain.Profile;
 import org.qmacias.project.portfolio.proj.domain.Project;
 
 import java.util.List;
@@ -29,6 +31,10 @@ public class Person implements java.io.Serializable {
     private String degree;
 
     private String email;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "PROFILE_ID", referencedColumnName = "ID")
+    private Profile profile;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "PERSON_ID", referencedColumnName = "ID")
@@ -109,6 +115,14 @@ public class Person implements java.io.Serializable {
         this.email = email;
     }
 
+    public Profile getProfile() {
+        return profile;
+    }
+
+    public void setProfile(Profile profile) {
+        this.profile = profile;
+    }
+
     public List<Job> getJobs() {
         return jobs;
     }
@@ -134,18 +148,18 @@ public class Person implements java.io.Serializable {
             return false;
         }
         Person person = (Person) o;
-        return Objects.equal(id, person.id) && Objects.equal(firstName, person.firstName) && Objects.equal(lastName, person.lastName) && Objects.equal(degree, person.degree) && Objects.equal(email, person.email) && Objects.equal(jobs, person.jobs) && Objects.equal(projects, person.projects);
+        return Objects.equal(id, person.id) && Objects.equal(firstName, person.firstName) && Objects.equal(lastName, person.lastName) && Objects.equal(degree, person.degree) && Objects.equal(email, person.email) && Objects.equal(profile, person.profile) && Objects.equal(jobs, person.jobs) && Objects.equal(projects, person.projects);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id, firstName, lastName, degree, email, jobs, projects);
+        return Objects.hashCode(id, firstName, lastName, degree, email, profile, jobs, projects);
     }
 
     @Override
     public String toString() {
         return new StringJoiner(", ", Person.class.getSimpleName() + "[", "]")
-                .add("id=" + id).add("firstName='" + firstName + "'").add("lastName='" + lastName + "'").add("degree='" + degree + "'").add("email='" + email + "'").add("jobs=" + jobs).add("projects=" + projects).toString();
+                .add("id=" + id).add("firstName='" + firstName + "'").add("lastName='" + lastName + "'").add("degree='" + degree + "'").add("email='" + email + "'").add("profile=" + profile).add("jobs=" + jobs).add("projects=" + projects).toString();
     }
 
 }
