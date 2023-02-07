@@ -9,6 +9,7 @@ import java.util.StringJoiner;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 @Entity
+@Table(name = "IMAGE")
 public class Image implements java.io.Serializable {
 
     static final long serialVersionUID = -2931477247727626623L;

@@ -17,6 +17,7 @@ import java.util.StringJoiner;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 @Entity
+@Table(name = "PROFILE")
 public class Profile implements java.io.Serializable {
 
     static final long serialVersionUID = 354181930931902258L;

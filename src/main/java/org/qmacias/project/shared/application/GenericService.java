@@ -2,14 +2,14 @@ package org.qmacias.project.shared.application;
 
 import java.util.List;
 
-public interface GenericService<T, K> {
+public interface GenericService<T, ID> {
 
     List<T> all();
 
-    T get(final K id);
+    T get(final ID id);
 
     T add(final T t);
 
-    void remove(final K id);
+    void remove(final ID id);
 
 }

@@ -9,6 +9,7 @@ import java.util.StringJoiner;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 @Entity
+@Table(name = "CATEGORY")
 public class Category implements java.io.Serializable {
 
     static final long serialVersionUID = -3438966892664055904L;
