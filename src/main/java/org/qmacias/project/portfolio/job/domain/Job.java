@@ -33,15 +33,15 @@ public class Job implements java.io.Serializable {
 
     private String description;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade= {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinTable(
             name = "JOB_SKILLS",
-            joinColumns= @JoinColumn(name ="JOB_ID"),
-            inverseJoinColumns=@JoinColumn(name="SKILL_ID")
+            joinColumns = @JoinColumn(name = "JOB_ID"),
+            inverseJoinColumns = @JoinColumn(name = "SKILL_ID")
     )
     private List<Skill> skills = Lists.newLinkedList();
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "EMPLOYMENT_ID", referencedColumnName = "ID")
     private Employment employment;
 

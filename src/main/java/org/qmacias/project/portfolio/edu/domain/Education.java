@@ -29,7 +29,7 @@ public class Education implements java.io.Serializable {
     @JoinColumn(name = "IMAGE_ID", referencedColumnName = "ID")
     private Image image;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "CATEGORY_ID", referencedColumnName = "ID")
     private Category category;
 
@@ -37,7 +37,7 @@ public class Education implements java.io.Serializable {
 
     private String place;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "MODALITY_ID", referencedColumnName = "ID")
     private Modality modality;
 
