@@ -53,4 +53,16 @@ public class PersonServiceImpl implements PersonService {
         return this.add(person.removeJobItem(job));
     }
 
+    @Override
+    public Person addProjectItem(final Long id, final Project project) {
+        final Person person = this.get(id);
+        return this.add(person.addProjectItem(project));
+    }
+
+    @Override
+    public Person removeProjectItem(final Long id, final Project project) {
+        final Person person = this.get(id);
+        return this.add(person.removeProjectItem(project));
+    }
+
 }

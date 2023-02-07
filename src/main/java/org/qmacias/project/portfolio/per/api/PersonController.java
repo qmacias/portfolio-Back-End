@@ -6,6 +6,8 @@ import org.qmacias.project.portfolio.job.domain.Job;
 import org.qmacias.project.portfolio.per.application.PersonService;
 
 import org.qmacias.project.portfolio.per.domain.Person;
+import org.qmacias.project.portfolio.proj.application.ProjectService;
+import org.qmacias.project.portfolio.proj.domain.Project;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,6 +20,8 @@ final class PersonController {
     private final PersonService service;
 
     private final JobService jobService;
+
+    private final ProjectService projectService;
 
     @GetMapping
     public List<Person> allPerson() {
@@ -49,6 +53,18 @@ final class PersonController {
     public Person removeJobItem(@PathVariable final Long id, @PathVariable final Long jobId) {
         final Job job = jobService.get(jobId);
         return service.removeJobItem(id, job);
+    }
+
+    @PutMapping("/{id}/project/{projectId}")
+    public Person addProjectItem(@PathVariable final Long id, @PathVariable final Long projectId) {
+        final Project project = projectService.get(projectId);
+        return service.addProjectItem(id, project);
+    }
+
+    @PutMapping("/{id}/remove_project/{projectId}")
+    public Person removeProjectItem(@PathVariable final Long id, @PathVariable final Long projectId) {
+        final Project project = projectService.get(projectId);
+        return service.removeProjectItem(id, project);
     }
 
 }
